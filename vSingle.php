@@ -89,16 +89,16 @@ if(!isset($_GET["id"])){
         <?php
         $servername = "wyvern.cs.newpaltz.edu";$sqlusername = "p_s19_4";$password = "ergrqo";$dbname = "p_s19_4_db";
         $conn = new mysqli($servername, $sqlusername, $password, $dbname);
-        $userName = $_SESSION['userName'];
         $id = $_SESSION['id'];
         $sql = "SELECT * FROM Folios WHERE ID ='$id'";
         $result = $conn->query($sql);
-        $row = mysql_fetch_array($result);
-        session_start();
-        $_SESSION['source'] = $row["userID"];
+        // $row = mysqli_fetch_assoc($result);
+        // print_R($row);die;
+
         if ($result) {
             $row = $result->fetch_assoc();
-        
+            $_SESSION['source'] = $row["userID"];
+
         ?>
 
       <dl class="row">
@@ -209,7 +209,7 @@ if(!isset($_GET["id"])){
         $id = $_SESSION['id'];
         $sql = "SELECT * FROM users WHERE userName ='$source'";
         $result = $conn->query($sql);
-        $row = mysql_fetch_array($result);
+        $row = mysqli_fetch_assoc($result);
         if ($result) {
             $row = $result->fetch_assoc();
             
@@ -249,7 +249,7 @@ if(!isset($_GET["id"])){
         $id = $_SESSION['id'];
         $sql = "SELECT * FROM Collaborators WHERE folioID ='$id'";
         $result = $conn->query($sql);
-        $row = mysql_fetch_array($result);
+        $row = mysqli_fetch_assoc($result);
         $x = 0; 
 
         if ($result->num_rows > 0) {
@@ -298,7 +298,7 @@ if(!isset($_GET["id"])){
       $_SESSION['id'] = $id;
       $sql = "SELECT * FROM Photos WHERE folioID ='$id'";
       $result = $conn->query($sql);
-      $row = mysql_fetch_array($result);
+      $row = mysqli_fetch_assoc($result);
       if ($result->num_rows > 0) {
         ?>
             <?php

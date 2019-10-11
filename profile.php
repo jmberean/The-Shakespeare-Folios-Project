@@ -83,7 +83,6 @@ if($conn){
 
 
     <?php
-    session_start();
     $userName = $_SESSION['userName'];
     $sql = "SELECT * FROM Folios WHERE userID = '$userName'";
     $result = $conn->query($sql);
